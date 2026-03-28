@@ -1,0 +1,27 @@
+# role based access control
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: developer
+  namespace: demo-ns
+
+rules:
+  - apiGroups: [""]
+    resources: ["pods", "deployments", "services"]
+    verbs: ["get", "list", "watch"]
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadtaa:
+  name: develeopr-binding
+  namespace: demo-ns
+
+subjetcs:
+  - kind: ServiceAccount
+    name: nginx-sa
+    namespace: demo-ns
+roleRef:
+  kind: Role
+  name: nginx-role
+  apiGroup: rbac.authorization.k8s.io/v1
