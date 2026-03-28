@@ -1,0 +1,12 @@
+# external configuration 
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-config
+  namespace: demo-ns
+
+data:
+   index.html: |
+      <h1>Hello from Kubernetes ConfigMap!</h1>
+      <p>Version: 1.0</p>
